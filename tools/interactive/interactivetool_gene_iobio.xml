@@ -1,0 +1,73 @@
+<tool id="interactive_tool_gene_iobio" tool_type="interactive" name="gene.iobio visualisation" version="4.6.9">
+    <requirements>
+        <container type="docker">whoisdonlee/iobio_container:main@sha256:95d941b0dd704d74e970cbed4e05a612ce0b733e6014b130da3280ccb8f5b81d</container>
+    </requirements>
+    <entry_points>
+        <entry_point name="Gene io.bio visualisation of $baminfile.element_identifier" requires_domain="True">
+            <port>4026</port>
+            <url>/</url>
+        </entry_point>
+    </entry_points>
+    <command><![CDATA[
+    ## localhost link:
+    ## http://localhost:4026/?gene=PDHA1
+    ##     &genes=PDHA1,ARHGAP8,RAI1,PLXNA1,SCN8A,SMARCA2
+    ##     &species=Human
+    ##     &build=GRCh38
+    ##     &affectedSibs=
+    ##     &unaffectedSibs=
+    ##     &rel0=proband
+    ##     &sex0=female
+    ##     &vcf0=https%3A%2F%2Fiobio.s3.amazonaws.com%2Fsamples%2Fvcf%2F2021_platinum%2F2021_platinum_exomes_GRCh38.vcf.gz
+    ##     &tbi0=https%3A%2F%2Fiobio.s3.amazonaws.com%2Fsamples%2Fvcf%2F2021_platinum%2F2021_platinum_exomes_GRCh38.vcf.gz.tbi
+    ##     &bam0=https%3A%2F%2Fiobio.s3.amazonaws.com%2Fsamples%2Fcram%2F2021_platinum%2FGRCh38_exomes%2FNA12878.cram
+    ##     &bai0=https%3A%2F%2Fiobio.s3.amazonaws.com%2Fsamples%2Fcram%2F2021_platinum%2FGRCh38_exomes%2FNA12878.cram.crai
+    ##     &sample0=NA12878
+    ##     &affectedStatus0=affected
+    ##     &rel1=mother
+    ##     &sex1=female
+    ##     &vcf1=https%3A%2F%2Fiobio.s3.amazonaws.com%2Fsamples%2Fvcf%2F2021_platinum%2F2021_platinum_exomes_GRCh38.vcf.gz
+    ##     &tbi1=https%3A%2F%2Fiobio.s3.amazonaws.com%2Fsamples%2Fvcf%2F2021_platinum%2F2021_platinum_exomes_GRCh38.vcf.gz.tbi
+    ##     &bam1=https%3A%2F%2Fiobio.s3.amazonaws.com%2Fsamples%2Fcram%2F2021_platinum%2FGRCh38_exomes%2FNA12892.cram
+    ##     &bai1=https%3A%2F%2Fiobio.s3.amazonaws.com%2Fsamples%2Fcram%2F2021_platinum%2FGRCh38_exomes%2FNA12892.cram.crai
+    ##     &sample1=NA12892
+    ##     &affectedStatus1=unaffected
+    ##     &rel2=father
+    ##     &sex2=male
+    ##     &vcf2=https%3A%2F%2Fiobio.s3.amazonaws.com%2Fsamples%2Fvcf%2F2021_platinum%2F2021_platinum_exomes_GRCh38.vcf.gz
+    ##     &tbi2=https%3A%2F%2Fiobio.s3.amazonaws.com%2Fsamples%2Fvcf%2F2021_platinum%2F2021_platinum_exomes_GRCh38.vcf.gz.tbi
+    ##     &bam2=https%3A%2F%2Fiobio.s3.amazonaws.com%2Fsamples%2Fcram%2F2021_platinum%2FGRCh38_exomes%2FNA12891.cram
+    ##     &bai2=https%3A%2F%2Fiobio.s3.amazonaws.com%2Fsamples%2Fcram%2F2021_platinum%2FGRCh38_exomes%2FNA12891.cram.crai
+    ##     &sample2=NA12891
+    ##     &affectedStatus2=unaffected
+    nginx -g daemon off;
+    ]]>
+    </command>
+    <inputs>
+       <!-- proband VCF+tbi (required) - sex - BAM/CRAM+bai/crai - samplename? - affected status -->
+        <!-- <param name="vcfinfile" type="data" format="vcf" label="VCF file"/> -->
+        <!-- <param name="baminfile" type="data" format="bam" label="BAM file"/> -->
+       <!-- father VCF+tbi - BAM/CRAM+bai/crai - samplename? - affected status -->
+        <!-- <param name="vcfinfile" type="data" format="vcf" label="VCF file"/> -->
+        <!-- <param name="vcfinfile" type="data" format="vcf" label="VCF file"/> -->
+       <!-- mother VCF+tbi - BAM/CRAM+bai/crai - samplename? - affected status -->
+        <!-- <param name="baminfile" type="data" format="bam" label="BAM file"/> -->
+        <!-- <param name="baminfile" type="data" format="bam" label="BAM file"/> -->
+    </inputs>
+    <outputs>
+        <!-- <data name="outfile" format="txt" /> -->
+    </outputs>
+    <tests>
+    </tests>
+    <help>
+        Required inputs:
+
+        1. BAM file: binary alignment map file
+
+        The `iobio project`_ is developed by the `Marth lab`_ at the `University of Utah Center for Genetic Discovery`_.
+
+        .. _iobio project: https://iobio.io
+        .. _Marth lab: https://marthlab.org/
+        .. _University of Utah Center for Genetic Discovery: https://ucgd.genetics.utah.edu/
+    </help>
+</tool>
