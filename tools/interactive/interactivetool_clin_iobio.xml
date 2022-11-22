@@ -1,9 +1,9 @@
-<tool id="interactive_tool_bam_iobio" tool_type="interactive" name="bam.iobio visualisation" version="0.4.0">
+<tool id="interactive_tool_clin_iobio" tool_type="interactive" name="clin.iobio visualisation" version="v3.2.4">
     <requirements>
         <container type="docker">whoisdonlee/iobio_container:main@sha256:95d941b0dd704d74e970cbed4e05a612ce0b733e6014b130da3280ccb8f5b81d</container>
     </requirements>
     <entry_points>
-        <entry_point name="Clin io.bio visualisation of $baminfile.element_identifier" requires_domain="True">
+        <entry_point name="Clin io.bio visualisation of $vcfinfile.element_identifier" requires_domain="True">
             <port>4030</port>
             <url>/</url>
         </entry_point>
